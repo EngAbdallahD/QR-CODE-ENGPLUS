@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Program Schedule</title>
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #e0f2f7; /* Lighter, more vibrant background */
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        /* Main container for all content */
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h1 {
+            color: #004d99; /* Slightly darker blue for contrast */
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Style for all blocks */
+        .block {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%); /* Subtle gradient */
+            border-radius: 15px; /* More rounded corners */
+            padding: 25px 35px;
+            margin: 20px auto; /* More margin */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.5) inset; /* More pronounced shadow with subtle inner highlight */
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            border: 1px solid rgba(255, 255, 255, 0.8); /* Light border for definition */
+            position: relative; /* For pseudo-elements or other effects */
+            overflow: hidden; /* To contain potential effects */
+        }
+
+        /* Adding a subtle texture or pattern might make it more realistic */
+        .block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMCIgY3k9IjEwIiByPSIxLjUiIGZpbGw9IiMwMDAwMDAiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg=='); /* Subtle dot pattern */
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Hover effect for active blocks */
+        .block:not(.disabled):hover {
+            transform: translateY(-8px) scale(1.02); /* More noticeable lift and slight scale */
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+            cursor: pointer;
+            z-index: 2; /* Bring to front on hover */
+        }
+
+        .block h2 {
+            margin: 0 0 10px 0;
+            color: #0069d9; /* Brighter blue */
+            font-size: 1.7rem;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.05);
+        }
+
+        .block h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700; /* Bolder text */
+            color: #212529; /* Darker for better readability */
+        }
+
+        .block p {
+            margin: 10px 0 0 0;
+            color: #555; /* Slightly darker gray */
+            font-size: 1rem;
+            line-height: 1.6;
+            text-shadow: 0 0 1px rgba(255,255,255,0.7); /* Subtle text shadow */
+        }
+
+        /* Style for disabled blocks */
+        .block.disabled {
+            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%); /* Different gradient for disabled */
+            opacity: 0.8;
+            cursor: not-allowed;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transform: none; /* No lift on disabled hover */
+            border: 1px solid rgba(200, 200, 200, 0.8);
+        }
+
+        .block.disabled h2, .block.disabled p {
+            color: #888;
+        }
+
+        /* Specific style for the course blocks page */
+        #courses-page {
+            display: none; /* Hidden by default */
+        }
+        
+        .course-list {
+            text-align: right; /* Aligns Arabic text to the right */
+            direction: rtl;
+        }
+
+        /* Style for the back button */
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px; /* Larger padding */
+            background-color: #28a745; /* Green for "Go Back" */
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px; /* More rounded */
+            transition: background-color 0.2s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+        }
+
+        .back-button:hover {
+            background-color: #218838; /* Darker green on hover */
+            transform: translateY(-2px); /* Slight lift */
+            box-shadow: 0 6px 12px rgba(40, 167, 69, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Page 1: Months View --><div id="months-page">
+            <h1>Program Schedule</h1>
+            
+            <!-- First month is an active link --><div class="block" id="first-month-btn">
+                <h2>First Month</h2>
+                <p>Click to see the schedule</p>
+            </div>
+            
+            <!-- Second month is disabled --><div class="block disabled">
+                <h2>Second Month</h2>
+                <p>(Coming Soon)</p>
+            </div>
+            
+            <!-- Third month is disabled --><div class="block disabled">
+                <h2>Third Month</h2>
+                <p>(Coming Soon)</p>
+            </div>
+        </div>
+
+        <!-- Page 2: Courses View (Initially Hidden) --><div id="courses-page">
+            <h1>First Month Courses</h1>
+            
+            <div class="course-list">
+                <div class="block">
+                    <h3>أخلاقيات مهنة الهندسة (وجاهي)</h3>
+                    <p>جلسة تغطي المبادئ الأساسية والمسؤوليات الأخلاقية التي توجه المهندسين في ممارستهم المهنية، لضمان النزاهة والسلامة العامة.</p>
+                </div>
+                
+                <div class="block">
+                    <h3>مهارات الاتصال والتفكير الناقد (أونلاين)</h3>
+                    <p>ورشة عمل عبر الإنترنت مصممة لتعزيز مهارات الاتصال وتطوير قدرات التفكير النقدي لحل المشكلات واتخاذ القرارات بفعالية في البيئات التقنية.</p>
+                </div>
+                
+                <div class="block">
+                    <h3>الهندسة في الميدان النقابي (أونلاين)</h3>
+                    <p>تعرف على دور النقابات الهندسية، والمناصرة المهنية، وحقوق وواجبات المهندسين ضمن الإطار النقابي في هذه الندوة عبر الإنترنت.</p>
+                </div>
+                
+                <div class="block">
+                    <h3>إعداد التقارير الفنية والمراسلات (أونلاين)</h3>
+                    <p>تركز هذه الدورة عبر الإنترنت على أفضل الممارسات لكتابة تقارير فنية ومراسلات رسمية واضحة وموجزة واحترافية.</p>
+                </div>
+
+                <div class="block">
+                    <h3>كتابة السير الذاتية والمقابلات (وجاهي)</h3>
+                    <p>ورشة عمل عملية ووجاهية حول صياغة سيرة ذاتية مؤثرة وإتقان تقنيات المقابلات للحصول بنجاح على الوظيفة الهندسية التي تستهدفها.</p>
+                </div>
+                
+                <div class="block">
+                    <h3>الهوية الرقمية وبناء العلامة الشخصية (LinkedIn & Personal Branding) (وجاهي)</h3>
+                    <p>دليل وجاهي لبناء هوية رقمية مهنية قوية وعلامة شخصية، مع التركيز بشكل خاص على الاستفادة من منصات مثل LinkedIn للنمو الوظيفي.</p>
+                </div>
+            </div>
+
+            <button class="back-button" id="back-btn">→ Back to Schedule</button>
+        </div>
+    </div>
+
+    <script>
+        // Get references to the elements
+        const monthsPage = document.getElementById('months-page');
+        const coursesPage = document.getElementById('courses-page');
+        const firstMonthBtn = document.getElementById('first-month-btn');
+        const backBtn = document.getElementById('back-btn');
+
+        // When "First Month" is clicked, show the courses page
+        firstMonthBtn.addEventListener('click', () => {
+            monthsPage.style.display = 'none';
+            coursesPage.style.display = 'block';
+        });
+
+        // When the "Back" button is clicked, show the months page
+        backBtn.addEventListener('click', () => {
+            coursesPage.style.display = 'none';
+            monthsPage.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
