@@ -143,7 +143,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                     </svg>
                     <span class="text-3xl font-bold">الشهر الثاني</span>
-                    <p class="text-gray-600 mt-2 text-center">الإدارة والمشاريع</p>
+                    <p class="text-gray-600 mt-2 text-center">التحليل الذكي والهندسة الرقمية</p>
                 </div>
                 <!-- الشهر الثالث -->
                 <div onclick="showPage('month3Page')" class="p-8 bg-white text-gray-800 rounded-2xl shadow-lg cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl flex flex-col items-center justify-center border-t-8 border-purple-600">
@@ -151,7 +151,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                     <span class="text-3xl font-bold">الشهر الثالث</span>
-                    <p class="text-gray-600 mt-2 text-center">التخصص العميق</p>
+                    <p class="text-gray-600 mt-2 text-center">التدريب التخصصي</p>
                 </div>
             </div>
         </main>
@@ -188,7 +188,7 @@
     <div id="month2Page" class="page">
         <header class="bg-white shadow-md sticky top-0 z-10">
             <div class="container mx-auto p-4 flex justify-between items-center">
-                <h1 class="text-2xl font-bold text-green-700">الشهر الثاني: الإدارة والمشاريع</h1>
+                <h1 class="text-2xl font-bold text-green-700">الشهر الثاني: التحليل الذكي والهندسة الرقمية</h1>
                 <button 
                     onclick="showPage('overviewPage')"
                     class="flex items-center gap-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold transition-colors duration-300 hover:bg-gray-300"
@@ -213,7 +213,7 @@
     <div id="month3Page" class="page">
         <header class="bg-white shadow-md sticky top-0 z-10">
             <div class="container mx-auto p-4 flex justify-between items-center">
-                <h1 class="text-2xl font-bold text-purple-700">الشهر الثالث: التخصص العميق</h1>
+                <h1 class="text-2xl font-bold text-purple-700">الشهر الثالث: التدريب التخصصي</h1>
                 <button 
                     onclick="showPage('overviewPage')"
                     class="flex items-center gap-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold transition-colors duration-300 hover:bg-gray-300"
@@ -241,77 +241,80 @@
                 title: "الشهر الأول: التأسيس والمهارات",
                 tracks: [
                 {
-                    title: "المسار الأول: المهارات الناعمة وتطوير الذات",
+                    title: "المحور الأول: أساسيات النجاح المهني",
                     courses: [
-                    { name: "أخلاقيات العمل والبيئة المهنية (ورشة عمل)", desc: "فهم السلوكيات المهنية وأهمية الالتزام بأخلاقيات المهنة في بيئة العمل الهندسية." },
-                    { name: "التواصل الفعال وبناء العلاقات (ورشة عمل)", desc: "تطوير مهارات التواصل الشفهي والكتابي، وكيفية بناء شبكة علاقات مهنية قوية." },
-                    { name: "إدارة الوقت وتحديد الأولويات (ورشة عمل)", desc: "استراتيجيات عملية لتنظيم المهام، تحديد الأولويات، وزيادة الإنتاجية الشخصية." },
-                    { name: "مهارات العرض والتقديم (ورشة عمل)", desc: "كيفية إعداد وتقديم عروض تقديمية مؤثرة واحترافية أمام الجمهور." },
-                    { name: "بناء الهوية المهنية (LinkedIn والبراند الشخصي) (ورشة عمل)", desc: "استخدام منصات مثل LinkedIn لبناء علامة تجارية شخصية قوية تجذب الفرص." },
+                    { name: "أخلاقيات مهنة الهندسة (وجاهي)", desc: "فهم المبادئ الأخلاقية والمسؤوليات المهنية للمهندس في بيئة العمل." },
+                    { name: "مهارات الاتصال والتفكير الناقد (أونلاين)", desc: "تطوير قدرات التواصل الفعال وحل المشكلات بطريقة تحليلية ونقدية." },
+                    { name: "الهندسة في الميدان النقابي (أونلاين)", desc: "التعرف على دور النقابات الهندسية، الحقوق والواجبات، وأهمية العمل النقابي." },
+                    { name: "إعداد التقارير الفنية والمراسلات (أونلاين)", desc: "تعلم كيفية كتابة التقارير الهندسية والمراسلات الرسمية بشكل احترافي وواضح." },
                     ]
                 },
                 {
-                    title: "المسار الثاني: المهارات الرقمية والتقنية",
+                    title: "المحور الثاني: بناء الحضور الوظيفي",
                     courses: [
-                    { name: "Advanced Excel & Visualization Tools", desc: "إتقان دوال الإكسل المتقدمة، الجداول المحورية، وأدوات عرض البيانات لاتخاذ قرارات أفضل." },
-                    { name: "Power BI وأدوات تحليل البيانات", desc: "تحويل البيانات الأولية إلى لوحات معلومات تفاعلية (Dashboards) وتقارير بصرية." },
-                    { name: "AI & Machine Learning Introduction", desc: "مقدمة شاملة في مفاهيم الذكاء الاصطناعي والتعلم الآلي وتطبيقاتها الهندسية." },
-                    { name: "Python for Engineers & Data Analysis", desc: "تعلم أساسيات لغة بايثون واستخدامها في أتمتة المهام الهندسية وتحليل البيانات." },
+                    { name: "كتابة السير الذاتية والمقابلات (وجاهي)", desc: "تقنيات إعداد سيرة ذاتية مميزة واجتياز المقابلات الوظيفية بثقة ونجاح." },
+                    { name: 'الهوية الرقمية وبناء العلامة الشخصية (LinkedIn & Personal Branding)(وجاهي)', desc: "استراتيجيات بناء هوية رقمية قوية على منصات مثل LinkedIn لجذب الفرص المهنية." },
                     ]
                 }
                 ]
             },
             month2: {
-                title: "الشهر الثاني: الإدارة والمشاريع",
+                title: "الشهر الثاني: التحليل الذكي والهندسة الرقمية",
                 tracks: [
                 {
-                    title: "المسار الموحد: إدارة المشاريع والأدوات الهندسية",
+                    title: "التحليل الذكي والهندسة الرقمية",
                     courses: [
-                    { name: "مقدمة في إدارة المشاريع (PMP Basics)", desc: "تعلم المبادئ الأساسية لإدارة المشاريع، دورة حياة المشروع، والمصطلحات الرئيسية." },
-                    { name: "برنامج MS Project", desc: "استخدام مايكروسوفت بروجكت لتخطيط وجدولة ومتابعة المشاريع الهندسية." },
-                    { name: "الصحة والسلامة المهنية (OSHA)", desc: "أساسيات معايير السلامة والصحة المهنية لضمان بيئة عمل آمنة في المواقع." },
-                    { name: "أساسيات قراءة المخططات الهندسية", desc: "كيفية قراءة وفهم المخططات الهندسية المختلفة (المعمارية، الكهربائية، الميكانيكية)." },
-                    { name: "مقدمة في برامج التصميم (AutoCAD 2D)", desc: "التعرف على واجهة الأوتوكاد وأدوات الرسم ثنائي الأبعاد الأساسية." }
+                    { name: "Advanced Excel & Visualization Tools", desc: "إتقان دوال الإكسل المتقدمة، الجداول المحورية، وأدوات عرض البيانات لاتخاذ قرارات أفضل." },
+                    { name: "Power BI – أدوات ذكاء الأعمال", desc: "تحويل البيانات الأولية إلى لوحات معلومات تفاعلية (Dashboards) وتقارير بصرية." },
+                    { name: "AI & Machine Learning Introduction", desc: "مقدمة شاملة في مفاهيم الذكاء الاصطناعي والتعلم الآلي وتطبيقاتها الهندسية." },
+                    { name: "Python for Engineers & Data Analysis", desc: "تعلم أساسيات لغة بايثون واستخدامها في أتمتة المهام الهندسية وتحليل البيانات." }
                     ]
                 }
                 ]
             },
             month3: {
-                title: "الشهر الثالث: التخصص العميق",
+                title: "الشهر الثالث: التدريب التخصصي",
                 tracks: [
                 {
-                    title: "المسار التخصصي: اختر تخصصك",
+                    title: "التدريب التخصصي",
                     majors: [
                     {
-                        name: "الهندسة الميكانيكية",
+                        name: "الهندسة المدنية",
                         courses: [
-                        { name: "Shop Drawings (Mechanical)", desc: "إعداد وقراءة المخططات التنفيذية التفصيلية للأنظمة الميكانيكية (HVAC, Plumbing, Firefighting)." },
-                        { name: "التصميم الميكانيكي باستخدام SolidWorks", desc: "مقدمة في التصميم ثلاثي الأبعاد والنمذجة باستخدام برنامج سوليدووركس." },
-                        { name: "أنظمة التكييف والتبريد (HVAC)", desc: "فهم مبادئ تصميم وحسابات أنظمة التدفئة والتهوية وتكييف الهواء." }
+                        { name: "ورشة في الهندسة الإنشائية", desc: "تطبيقات عملية ومتقدمة في تصميم وتحليل المنشآت الهندسية." },
+                        { name: "Shop Drawings", desc: "كيفية إعداد وقراءة المخططات التنفيذية التفصيلية للمشاريع الإنشائية." },
+                        { name: "متطلبات الفحوصات المخبرية والمواد الإنشائية", desc: "فهم أهم الفحوصات المطلوبة للمواد كالخرسانة والحديد لضمان الجودة." }
                         ]
                     },
                     {
                         name: "الهندسة الكهربائية",
                         courses: [
-                        { name: "تصميم أنظمة القوى الكهربائية", desc: "أساسيات تصميم أنظمة التوزيع الكهربائي، الكابلات، والقواطع." },
-                        { name: "برامج ETAP, Simulink, PSCAD", desc: "استخدام برامج المحاكاة المتقدمة لتحليل أنظمة القوى الكهربائية." },
-                        { name: "أنظمة التحكم الآلي (SCADA, DCS)", desc: "مقدمة في أنظمة التحكم والمراقبة الصناعية." }
+                        { name: "خدمات البناء الكهربائية", desc: "تصميم وتنفيذ أنظمة الإنارة، القوى، والتيار الخفيف في المباني." },
+                        { name: "برامج ETAP, Simulink, PSCAD", desc: "استخدام برامج المحاكاة المتقدمة لتحليل وحماية أنظمة القوى الكهربائية." },
+                        { name: "أنظمة التحكم والمراقبة (SCADA, DCS)", desc: "مقدمة في أنظمة التحكم والمراقبة الصناعية لجمع البيانات والتحكم عن بعد." }
+                        ]
+                    },
+                    {
+                        name: "الهندسة الميكانيكية",
+                        courses: [
+                        { name: "ورشة في المضخات (صيانة وتشغيل)", desc: "دورة عملية حول أنواع المضخات، طرق تشغيلها، وبرامج الصيانة الدورية والوقائية." },
+                        { name: "أنظمة الطاقة الحرارية", desc: "دراسة مبادئ وتطبيقات أنظمة الطاقة الحرارية، بما في ذلك التوربينات والمحركات." },
+                        { name: "خدمات البناء الميكانيكية", desc: "تصميم وتنفيذ أنظمة التكييف (HVAC)، مكافحة الحرائق (Firefighting)، والصرف الصحي (Plumbing)." }
                         ]
                     },
                     {
                         name: "الهندسة الكيميائية",
                         courses: [
-                        { name: "أساسيات عمليات الفصل (برج التقطير)", desc: "فهم المبادئ النظرية والتطبيقية لعمليات الفصل في الصناعات الكيميائية." },
-                        { name: "تصميم المفاعلات الكيميائية", desc: "مبادئ تصميم وتشغيل المفاعلات الكيميائية المختلفة." },
-                        { name: "برامج المحاكاة HYSYS, ASPEN PLUS", desc: "استخدام برامج المحاكاة لتصميم وتحليل العمليات الكيميائية." }
+                        { name: "المحاكاة باستخدام HYSYS , ASPEN PLUS", desc: "استخدام برامج المحاكاة المتقدمة لتصميم، تحليل، وتحسين العمليات الكيميائية." },
+                        { name: "التتبع المخبري وضمان جودة النتائج (مقدمة في ISO17025)", desc: "فهم متطلبات معيار ISO17025 لضمان دقة وموثوقية نتائج المختبرات." },
+                        { name: "معالجة المياه العادمة والتحكم في الانبعاثات", desc: "تقنيات تصميم وتشغيل وحدات معالجة المياه الصناعية والتحكم في ملوثات الهواء." }
                         ]
                     },
                     {
-                        name: "الهندسة الصناعية",
+                        name: "الهندسة المعمارية",
                         courses: [
-                        { name: "إدارة الجودة الشاملة (TQM) (متطلبات ISO 17025)", desc: "تطبيق مبادئ إدارة الجودة الشاملة ومعايير الأيزو لضمان جودة العمليات والمختبرات." },
-                        { name: "تخطيط وإدارة سلاسل الإمداد", desc: "فهم تدفق المواد والمعلومات من المورد إلى العميل." },
-                        { name: "Shop Drawings (Industrial)", desc: "قراءة وفهم المخططات التنفيذية لتخطيط المصانع وخطوط الإنتاج." }
+                        { name: "Shop Drawings", desc: "إعداد وقراءة المخططات التنفيذية المعمارية وتفاصيل التشطيبات." },
+                        { name: "الذكاء الاصطناعي وتطبيقاته في الهندسة المعمارية", desc: "استكشاف كيف يمكن للذكاء الاصطناعي المساعدة في التصميم والتخطيط العمراني." }
                         ]
                     }
                     ]
@@ -415,13 +418,14 @@
             if (!container) return;
             
             const month1Data = programData.month1;
-            let month1Tabs = '<div class="flex border-b border-gray-300 mb-4">';
+            // استخدام flex-wrap للسماح للتابات بالالتفاف في الشاشات الصغيرة
+            let month1Tabs = '<div class="flex flex-wrap border-b border-gray-300 mb-4">';
             let month1Contents = '<div class="mt-4">';
             
             month1Data.tracks.forEach((track, index) => {
                 const isActive = index === 0 ? 'active' : '';
                 month1Tabs += `
-                    <button class="tab-button ${isActive} py-2 px-6 text-lg font-semibold text-gray-600 border-b-4 border-transparent" data-tab="month1-track${index}">
+                    <button class="tab-button ${isActive} py-2 px-4 md:px-6 text-base md:text-lg font-semibold text-gray-600 border-b-4 border-transparent" data-tab="month1-track${index}">
                         ${track.title}
                     </button>
                 `;
@@ -480,16 +484,22 @@
         function addEventListeners() {
             // مستمعي الأكورديون
             document.querySelectorAll('.accordion-header').forEach(header => {
+                // التأكد من عدم إضافة المستمع أكثر من مرة
+                if (header.dataset.listenerAdded) return;
+                header.dataset.listenerAdded = true;
+
                 header.addEventListener('click', () => {
                     const content = document.querySelector(header.dataset.target);
                     const icon = header.querySelector('svg');
+
+                    if (!content) return;
                     
                     if (content.style.maxHeight) {
                         // إغلاق
                         content.style.maxHeight = null;
                         icon.style.transform = 'rotate(0deg)';
                     } else {
-                        // فتح (مع إغلاق الأقسام الأخرى من نفس المستوى إذا أردنا)
+                        // فتح
                         content.style.maxHeight = content.scrollHeight + "px";
                         icon.style.transform = 'rotate(180deg)';
                     }
@@ -498,9 +508,15 @@
             
             // مستمعي التابات (للشهر الأول)
             document.querySelectorAll('.tab-button').forEach(button => {
+                // التأكد من عدم إضافة المستمع أكثر من مرة
+                if (button.dataset.listenerAdded) return;
+                button.dataset.listenerAdded = true;
+
                 button.addEventListener('click', () => {
                     const tabId = button.dataset.tab;
                     const tabContainer = button.closest('div').nextElementSibling;
+
+                    if (!tabContainer) return;
                     
                     // إزالة 'active' من جميع الأزرار والمحتويات ضمن نفس المجموعة
                     button.parentElement.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
@@ -508,7 +524,10 @@
                     
                     // إضافة 'active' للزر والمحتوى المختار
                     button.classList.add('active');
-                    document.getElementById(tabId).classList.add('active');
+                    const activeTabContent = document.getElementById(tabId);
+                    if (activeTabContent) {
+                        activeTabContent.classList.add('active');
+                    }
                 });
             });
         }
