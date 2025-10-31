@@ -1,225 +1,521 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Training Program Schedule</title>
+    <title>برنامج تدريب المهندسين الجدد</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Cairo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* General Body Styles */
+        /* تطبيق الخط العربي الافتراضي */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #e0f2f7; /* Lighter, more vibrant background */
-            color: #333;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
+            font-family: 'Cairo', sans-serif;
+            background-color: #f7fafc; /* لون خلفية رمادي فاتح */
         }
 
-        /* Main container for all content */
-        .container {
-            width: 100%;
-            max-width: 800px;
-        }
-
-        h1 {
-            color: #004d99; /* Slightly darker blue for contrast */
-            margin-bottom: 40px;
-            font-size: 2.5rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        /* Style for all blocks */
-        .block {
-            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%); /* Subtle gradient */
-            border-radius: 15px; /* More rounded corners */
-            padding: 25px 35px;
-            margin: 20px auto; /* More margin */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.5) inset; /* More pronounced shadow with subtle inner highlight */
-            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            border: 1px solid rgba(255, 255, 255, 0.8); /* Light border for definition */
-            position: relative; /* For pseudo-elements or other effects */
-            overflow: hidden; /* To contain potential effects */
-        }
-
-        /* Adding a subtle texture or pattern might make it more realistic */
-        .block::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMCIgY3k9IjEwIiByPSIxLjUiIGZpbGw9IiMwMDAwMDAiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg=='); /* Subtle dot pattern */
-            opacity: 0.3;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Hover effect for active blocks */
-        .block:not(.disabled):hover {
-            transform: translateY(-8px) scale(1.02); /* More noticeable lift and slight scale */
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.7) inset;
-            cursor: pointer;
-            z-index: 2; /* Bring to front on hover */
-        }
-
-        .block h2 {
-            margin: 0 0 10px 0;
-            color: #0069d9; /* Brighter blue */
-            font-size: 1.7rem;
-            text-shadow: 0 1px 1px rgba(0,0,0,0.05);
-        }
-
-        .block h3 {
-            margin: 0;
-            font-size: 1.2rem;
-            font-weight: 700; /* Bolder text */
-            color: #212529; /* Darker for better readability */
-        }
-
-        .block p {
-            margin: 10px 0 0 0;
-            color: #555; /* Slightly darker gray */
-            font-size: 1rem;
-            line-height: 1.6;
-            text-shadow: 0 0 1px rgba(255,255,255,0.7); /* Subtle text shadow */
-        }
-
-        /* Style for disabled blocks */
-        .block.disabled {
-            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%); /* Different gradient for disabled */
-            opacity: 0.8;
-            cursor: not-allowed;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transform: none; /* No lift on disabled hover */
-            border: 1px solid rgba(200, 200, 200, 0.8);
-        }
-
-        .block.disabled h2, .block.disabled p {
-            color: #888;
-        }
-
-        /* Specific style for the course blocks page */
-        #courses-page {
-            display: none; /* Hidden by default */
+        /* إخفاء الصفحات بشكل افتراضي */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
         }
         
-        .course-list {
-            text-align: right; /* Aligns Arabic text to the right */
-            direction: rtl;
+        /* إظهار الصفحة النشطة */
+        .page.active {
+            display: block;
+        }
+        
+        /* تأثير الظهور التدريجي */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Style for the back button */
-        .back-button {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 25px; /* Larger padding */
-            background-color: #28a745; /* Green for "Go Back" */
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 10px; /* More rounded */
-            transition: background-color 0.2s, transform 0.2s;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+        /* تنسيق الأكورديون (Accordion) */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
         }
 
-        .back-button:hover {
-            background-color: #218838; /* Darker green on hover */
-            transform: translateY(-2px); /* Slight lift */
-            box-shadow: 0 6px 12px rgba(40, 167, 69, 0.4);
+        /* تنسيق أزرار التاب (Tabs) */
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            border-color: #2563eb; /* أزرق */
+            color: #2563eb;
+            font-weight: 700;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
         }
     </style>
 </head>
-<body>
+<body class="text-gray-800">
 
-    <div class="container">
-        <!-- Page 1: Months View --><div id="months-page">
-            <h1>Program Schedule</h1>
+    <!-- ======================= -->
+    <!--     الصفحة الرئيسية      -->
+    <!-- ======================= -->
+    <div id="homePage" class="page active">
+        <div class="flex flex-col items-center justify-center min-h-screen p-8 bg-white">
+            <!-- الشعار -->
+            <img 
+                src="WhatsApp Image 2025-10-12 at 13.23.20_1fdc6770.jpg" 
+                alt="شعار البرنامج" 
+                class="w-48 h-48 object-contain rounded-full mb-8 shadow-xl border-4 border-gray-100"
+                onerror="this.alt='شعار البرنامج'; this.src='https://placehold.co/192x192/003366/FFFFFF?text=%D8%B4%D8%B9%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC'"
+            >
             
-            <!-- First month is an active link --><div class="block" id="first-month-btn">
-                <h2>First Month</h2>
-                <p>Click to see the schedule</p>
-            </div>
-            
-            <!-- Second month is disabled --><div class="block disabled">
-                <h2>Second Month</h2>
-                <p>(Coming Soon)</p>
-            </div>
-            
-            <!-- Third month is disabled --><div class="block disabled">
-                <h2>Third Month</h2>
-                <p>(Coming Soon)</p>
-            </div>
-        </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-4">برنامج تدريب المهندسين الجدد</h1>
+            <p class="text-xl text-gray-600 mb-12 text-center">بوابتك نحو الاحتراف الهندسي</p>
 
-        <!-- Page 2: Courses View (Initially Hidden) --><div id="courses-page">
-            <h1>First Month Courses</h1>
-            
-            <div class="course-list">
-                <div class="block">
-                    <h3>أخلاقيات مهنة الهندسة (وجاهي)</h3>
-                    <p>جلسة تغطي المبادئ الأساسية والمسؤوليات الأخلاقية التي توجه المهندسين في ممارستهم المهنية، لضمان النزاهة والسلامة العامة.</p>
-                </div>
-                
-                <div class="block">
-                    <h3>مهارات الاتصال والتفكير الناقد (أونلاين)</h3>
-                    <p>ورشة عمل عبر الإنترنت مصممة لتعزيز مهارات الاتصال وتطوير قدرات التفكير النقدي لحل المشكلات واتخاذ القرارات بفعالية في البيئات التقنية.</p>
-                </div>
-                
-                <div class="block">
-                    <h3>الهندسة في الميدان النقابي (أونلاين)</h3>
-                    <p>تعرف على دور النقابات الهندسية، والمناصرة المهنية، وحقوق وواجبات المهندسين ضمن الإطار النقابي في هذه الندوة عبر الإنترنت.</p>
-                </div>
-                
-                <div class="block">
-                    <h3>إعداد التقارير الفنية والمراسلات (أونلاين)</h3>
-                    <p>تركز هذه الدورة عبر الإنترنت على أفضل الممارسات لكتابة تقارير فنية ومراسلات رسمية واضحة وموجزة واحترافية.</p>
+            <div class="flex flex-col md:flex-row gap-8 w-full max-w-2xl">
+                <!-- زر نظرة عامة -->
+                <div 
+                    onclick="showPage('overviewPage')" 
+                    class="w-full md:w-1/2 p-8 bg-blue-600 text-white rounded-2xl shadow-lg cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl flex flex-col items-center justify-center"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="text-2xl font-bold">نظرة عامة على البرنامج</span>
                 </div>
 
-                <div class="block">
-                    <h3>كتابة السير الذاتية والمقابلات (وجاهي)</h3>
-                    <p>ورشة عمل عملية ووجاهية حول صياغة سيرة ذاتية مؤثرة وإتقان تقنيات المقابلات للحصول بنجاح على الوظيفة الهندسية التي تستهدفها.</p>
-                </div>
-                
-                <div class="block">
-                    <h3>الهوية الرقمية وبناء العلامة الشخصية (LinkedIn & Personal Branding) (وجاهي)</h3>
-                    <p>دليل وجاهي لبناء هوية رقمية مهنية قوية وعلامة شخصية، مع التركيز بشكل خاص على الاستفادة من منصات مثل LinkedIn للنمو الوظيفي.</p>
-                </div>
+                <!-- زر سجل الآن -->
+                <a 
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdlCuYgemqgIReuFt3IWmTvemHNG9QJz6hWM-7fEPukO0AVBw/viewform?usp=dialog"
+                    target="_blank"
+                    class="w-full md:w-1/2 p-8 bg-green-600 text-white rounded-2xl shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl flex flex-col items-center justify-center"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                    <span class="text-2xl font-bold">سجل الآن</span>
+                </a>
             </div>
-
-            <button class="back-button" id="back-btn">→ Back to Schedule</button>
         </div>
     </div>
 
+    <!-- ======================= -->
+    <!--    صفحة نظرة عامة       -->
+    <!-- ======================= -->
+    <div id="overviewPage" class="page">
+        <!-- شريط علوي مع زر العودة -->
+        <header class="bg-white shadow-md sticky top-0 z-10">
+            <div class="container mx-auto p-4 flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-blue-700">نظرة عامة على البرنامج</h1>
+                <button 
+                    onclick="showPage('homePage')"
+                    class="flex items-center gap-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold transition-colors duration-300 hover:bg-gray-300"
+                >
+                    <span>العودة للرئيسية</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+        
+        <!-- محتوى البرنامج -->
+        <main class="container mx-auto p-4 md:p-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- الشهر الأول -->
+                <div onclick="showPage('month1Page')" class="p-8 bg-white text-gray-800 rounded-2xl shadow-lg cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl flex flex-col items-center justify-center border-t-8 border-blue-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="text-3xl font-bold">الشهر الأول</span>
+                    <p class="text-gray-600 mt-2 text-center">التأسيس والمهارات</p>
+                </div>
+                <!-- الشهر الثاني -->
+                <div onclick="showPage('month2Page')" class="p-8 bg-white text-gray-800 rounded-2xl shadow-lg cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl flex flex-col items-center justify-center border-t-8 border-green-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                    </svg>
+                    <span class="text-3xl font-bold">الشهر الثاني</span>
+                    <p class="text-gray-600 mt-2 text-center">الإدارة والمشاريع</p>
+                </div>
+                <!-- الشهر الثالث -->
+                <div onclick="showPage('month3Page')" class="p-8 bg-white text-gray-800 rounded-2xl shadow-lg cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl flex flex-col items-center justify-center border-t-8 border-purple-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span class="text-3xl font-bold">الشهر الثالث</span>
+                    <p class="text-gray-600 mt-2 text-center">التخصص العميق</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ======================= -->
+    <!--     صفحة الشهر الأول      -->
+    <!-- ======================= -->
+    <div id="month1Page" class="page">
+        <header class="bg-white shadow-md sticky top-0 z-10">
+            <div class="container mx-auto p-4 flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-blue-700">الشهر الأول: التأسيس والمهارات</h1>
+                <button 
+                    onclick="showPage('overviewPage')"
+                    class="flex items-center gap-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold transition-colors duration-300 hover:bg-gray-300"
+                >
+                    <span>العودة للنظرة العامة</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+        <main class="container mx-auto p-4 md:p-8">
+            <div id="month1-container" class="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                <!-- سيتم ملء هذا القسم بواسطة JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <!-- ======================= -->
+    <!--     صفحة الشهر الثاني     -->
+    <!-- ======================= -->
+    <div id="month2Page" class="page">
+        <header class="bg-white shadow-md sticky top-0 z-10">
+            <div class="container mx-auto p-4 flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-green-700">الشهر الثاني: الإدارة والمشاريع</h1>
+                <button 
+                    onclick="showPage('overviewPage')"
+                    class="flex items-center gap-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold transition-colors duration-300 hover:bg-gray-300"
+                >
+                    <span>العودة للنظرة العامة</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+        <main class="container mx-auto p-4 md:p-8">
+            <div id="month2-container" class="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                <!-- سيتم ملء هذا القسم بواسطة JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <!-- ======================= -->
+    <!--     صفحة الشهر الثالث     -->
+    <!-- ======================= -->
+    <div id="month3Page" class="page">
+        <header class="bg-white shadow-md sticky top-0 z-10">
+            <div class="container mx-auto p-4 flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-purple-700">الشهر الثالث: التخصص العميق</h1>
+                <button 
+                    onclick="showPage('overviewPage')"
+                    class="flex items-center gap-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-semibold transition-colors duration-300 hover:bg-gray-300"
+                >
+                    <span>العودة للنظرة العامة</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+        <main class="container mx-auto p-4 md:p-8">
+            <div id="month3-container" class="bg-white rounded-lg shadow-lg p-6 border border-gray-200">
+                <!-- سيتم ملء هذا القسم بواسطة JavaScript -->
+            </div>
+        </main>
+    </div>
+
     <script>
-        // Get references to the elements
-        const monthsPage = document.getElementById('months-page');
-        const coursesPage = document.getElementById('courses-page');
-        const firstMonthBtn = document.getElementById('first-month-btn');
-        const backBtn = document.getElementById('back-btn');
+        // =======================
+        //     بيانات البرنامج
+        // =======================
+        const programData = {
+            month1: {
+                title: "الشهر الأول: التأسيس والمهارات",
+                tracks: [
+                {
+                    title: "المسار الأول: المهارات الناعمة وتطوير الذات",
+                    courses: [
+                    { name: "أخلاقيات العمل والبيئة المهنية (ورشة عمل)", desc: "فهم السلوكيات المهنية وأهمية الالتزام بأخلاقيات المهنة في بيئة العمل الهندسية." },
+                    { name: "التواصل الفعال وبناء العلاقات (ورشة عمل)", desc: "تطوير مهارات التواصل الشفهي والكتابي، وكيفية بناء شبكة علاقات مهنية قوية." },
+                    { name: "إدارة الوقت وتحديد الأولويات (ورشة عمل)", desc: "استراتيجيات عملية لتنظيم المهام، تحديد الأولويات، وزيادة الإنتاجية الشخصية." },
+                    { name: "مهارات العرض والتقديم (ورشة عمل)", desc: "كيفية إعداد وتقديم عروض تقديمية مؤثرة واحترافية أمام الجمهور." },
+                    { name: "بناء الهوية المهنية (LinkedIn والبراند الشخصي) (ورشة عمل)", desc: "استخدام منصات مثل LinkedIn لبناء علامة تجارية شخصية قوية تجذب الفرص." },
+                    ]
+                },
+                {
+                    title: "المسار الثاني: المهارات الرقمية والتقنية",
+                    courses: [
+                    { name: "Advanced Excel & Visualization Tools", desc: "إتقان دوال الإكسل المتقدمة، الجداول المحورية، وأدوات عرض البيانات لاتخاذ قرارات أفضل." },
+                    { name: "Power BI وأدوات تحليل البيانات", desc: "تحويل البيانات الأولية إلى لوحات معلومات تفاعلية (Dashboards) وتقارير بصرية." },
+                    { name: "AI & Machine Learning Introduction", desc: "مقدمة شاملة في مفاهيم الذكاء الاصطناعي والتعلم الآلي وتطبيقاتها الهندسية." },
+                    { name: "Python for Engineers & Data Analysis", desc: "تعلم أساسيات لغة بايثون واستخدامها في أتمتة المهام الهندسية وتحليل البيانات." },
+                    ]
+                }
+                ]
+            },
+            month2: {
+                title: "الشهر الثاني: الإدارة والمشاريع",
+                tracks: [
+                {
+                    title: "المسار الموحد: إدارة المشاريع والأدوات الهندسية",
+                    courses: [
+                    { name: "مقدمة في إدارة المشاريع (PMP Basics)", desc: "تعلم المبادئ الأساسية لإدارة المشاريع، دورة حياة المشروع، والمصطلحات الرئيسية." },
+                    { name: "برنامج MS Project", desc: "استخدام مايكروسوفت بروجكت لتخطيط وجدولة ومتابعة المشاريع الهندسية." },
+                    { name: "الصحة والسلامة المهنية (OSHA)", desc: "أساسيات معايير السلامة والصحة المهنية لضمان بيئة عمل آمنة في المواقع." },
+                    { name: "أساسيات قراءة المخططات الهندسية", desc: "كيفية قراءة وفهم المخططات الهندسية المختلفة (المعمارية، الكهربائية، الميكانيكية)." },
+                    { name: "مقدمة في برامج التصميم (AutoCAD 2D)", desc: "التعرف على واجهة الأوتوكاد وأدوات الرسم ثنائي الأبعاد الأساسية." }
+                    ]
+                }
+                ]
+            },
+            month3: {
+                title: "الشهر الثالث: التخصص العميق",
+                tracks: [
+                {
+                    title: "المسار التخصصي: اختر تخصصك",
+                    majors: [
+                    {
+                        name: "الهندسة الميكانيكية",
+                        courses: [
+                        { name: "Shop Drawings (Mechanical)", desc: "إعداد وقراءة المخططات التنفيذية التفصيلية للأنظمة الميكانيكية (HVAC, Plumbing, Firefighting)." },
+                        { name: "التصميم الميكانيكي باستخدام SolidWorks", desc: "مقدمة في التصميم ثلاثي الأبعاد والنمذجة باستخدام برنامج سوليدووركس." },
+                        { name: "أنظمة التكييف والتبريد (HVAC)", desc: "فهم مبادئ تصميم وحسابات أنظمة التدفئة والتهوية وتكييف الهواء." }
+                        ]
+                    },
+                    {
+                        name: "الهندسة الكهربائية",
+                        courses: [
+                        { name: "تصميم أنظمة القوى الكهربائية", desc: "أساسيات تصميم أنظمة التوزيع الكهربائي، الكابلات، والقواطع." },
+                        { name: "برامج ETAP, Simulink, PSCAD", desc: "استخدام برامج المحاكاة المتقدمة لتحليل أنظمة القوى الكهربائية." },
+                        { name: "أنظمة التحكم الآلي (SCADA, DCS)", desc: "مقدمة في أنظمة التحكم والمراقبة الصناعية." }
+                        ]
+                    },
+                    {
+                        name: "الهندسة الكيميائية",
+                        courses: [
+                        { name: "أساسيات عمليات الفصل (برج التقطير)", desc: "فهم المبادئ النظرية والتطبيقية لعمليات الفصل في الصناعات الكيميائية." },
+                        { name: "تصميم المفاعلات الكيميائية", desc: "مبادئ تصميم وتشغيل المفاعلات الكيميائية المختلفة." },
+                        { name: "برامج المحاكاة HYSYS, ASPEN PLUS", desc: "استخدام برامج المحاكاة لتصميم وتحليل العمليات الكيميائية." }
+                        ]
+                    },
+                    {
+                        name: "الهندسة الصناعية",
+                        courses: [
+                        { name: "إدارة الجودة الشاملة (TQM) (متطلبات ISO 17025)", desc: "تطبيق مبادئ إدارة الجودة الشاملة ومعايير الأيزو لضمان جودة العمليات والمختبرات." },
+                        { name: "تخطيط وإدارة سلاسل الإمداد", desc: "فهم تدفق المواد والمعلومات من المورد إلى العميل." },
+                        { name: "Shop Drawings (Industrial)", desc: "قراءة وفهم المخططات التنفيذية لتخطيط المصانع وخطوط الإنتاج." }
+                        ]
+                    }
+                    ]
+                }
+                ]
+            }
+        };
 
-        // When "First Month" is clicked, show the courses page
-        firstMonthBtn.addEventListener('click', () => {
-            monthsPage.style.display = 'none';
-            coursesPage.style.display = 'block';
-        });
+        // =======================
+        //     وظائف التحكم
+        // =======================
 
-        // When the "Back" button is clicked, show the months page
-        backBtn.addEventListener('click', () => {
-            coursesPage.style.display = 'none';
-            monthsPage.style.display = 'block';
-        });
+        /**
+         * دالة لتبديل الصفحات
+         */
+        function showPage(pageId) {
+            // إخفاء جميع الصفحات
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // إظهار الصفحة المطلوبة
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.classList.add('active');
+            }
+            // العودة لأعلى الصفحة
+            window.scrollTo(0, 0);
+        }
+
+        /**
+         * دالة لإنشاء كرت الدورة
+         */
+        function createCourseCard(course) {
+            return `
+                <div class="bg-white p-4 rounded-lg shadow-md border-r-4 border-blue-500 transform transition-transform duration-300 hover:scale-[1.02]">
+                    <h4 class="text-lg font-bold text-blue-800">${course.name}</h4>
+                    <p class="text-gray-600 mt-1">${course.desc}</p>
+                </div>
+            `;
+        }
+
+        /**
+         * دالة لإنشاء قسم أكورديون
+         */
+        function createAccordionItem(id, title, content) {
+            return `
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
+                    <!-- رأس الأكورديون -->
+                    <div class="accordion-header p-6 cursor-pointer flex justify-between items-center bg-gray-50 hover:bg-gray-100" data-target="#${id}">
+                        <h3 class="text-2xl font-bold text-gray-800">${title}</h3>
+                        <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <!-- محتوى الأكورديون -->
+                    <div id="${id}" class="accordion-content p-6 bg-white border-t border-gray-200">
+                        ${content}
+                    </div>
+                </div>
+            `;
+        }
+        
+        /**
+         * دالة لإنشاء أكورديون داخلي (للتخصصات)
+         */
+        function createInnerAccordion(id, title, content) {
+             return `
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden border border-gray-200">
+                    <div class="accordion-header p-4 cursor-pointer flex justify-between items-center bg-gray-100 hover:bg-gray-200" data-target="#${id}">
+                        <h3 class="text-xl font-bold text-gray-700">${title}</h3>
+                        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                    <div id="${id}" class="accordion-content p-4 bg-white border-t border-gray-200">
+                        ${content}
+                    </div>
+                </div>
+            `;
+        }
+
+        /**
+         * دالة لرسم البرنامج عند تحميل الصفحة
+         */
+        function renderProgram() {
+            // استدعاء دوال الرسم لكل شهر
+            renderMonth1();
+            renderMonth2();
+            renderMonth3();
+            
+            // --- إضافة مستمعي الأحداث (Event Listeners) ---
+            // يتم إضافتها مرة واحدة بعد رسم كل المحتوى
+            addEventListeners();
+        }
+
+        /**
+         * دالة لرسم محتوى الشهر الأول
+         */
+        function renderMonth1() {
+            const container = document.getElementById('month1-container');
+            if (!container) return;
+            
+            const month1Data = programData.month1;
+            let month1Tabs = '<div class="flex border-b border-gray-300 mb-4">';
+            let month1Contents = '<div class="mt-4">';
+            
+            month1Data.tracks.forEach((track, index) => {
+                const isActive = index === 0 ? 'active' : '';
+                month1Tabs += `
+                    <button class="tab-button ${isActive} py-2 px-6 text-lg font-semibold text-gray-600 border-b-4 border-transparent" data-tab="month1-track${index}">
+                        ${track.title}
+                    </button>
+                `;
+                
+                let coursesHtml = track.courses.map(createCourseCard).join('<div class="my-4"></div>');
+                month1Contents += `
+                    <div id="month1-track${index}" class="tab-content ${isActive}">
+                        <div class="space-y-4">${coursesHtml}</div>
+                    </div>
+                `;
+            });
+            month1Tabs += '</div>';
+            month1Contents += '</div>';
+            container.innerHTML = month1Tabs + month1Contents;
+        }
+
+        /**
+         * دالة لرسم محتوى الشهر الثاني
+         */
+        function renderMonth2() {
+            const container = document.getElementById('month2-container');
+            if (!container) return;
+            
+            const month2Data = programData.month2;
+            const month2Track = month2Data.tracks[0];
+            let month2Courses = month2Track.courses.map(createCourseCard).join('<div class="my-4"></div>');
+            
+            container.innerHTML = `
+                <h4 class="text-xl font-bold text-gray-700 mb-4">${month2Track.title}</h4>
+                <div class="space-y-4">${month2Courses}</div>
+            `;
+        }
+
+        /**
+         * دالة لرسم محتوى الشهر الثالث
+         */
+        function renderMonth3() {
+            const container = document.getElementById('month3-container');
+            if (!container) return;
+
+            const month3Data = programData.month3;
+            const month3Track = month3Data.tracks[0];
+            let majorsHtml = `<h4 class="text-xl font-bold text-gray-700 mb-4">${month3Track.title}</h4><div class="space-y-4">`;
+            
+            month3Track.majors.forEach((major, index) => {
+                let majorCourses = major.courses.map(createCourseCard).join('<div class="my-4"></div>');
+                majorsHtml += createInnerAccordion(`major-${index}`, major.name, `<div class="space-y-4">${majorCourses}</div>`);
+            });
+            majorsHtml += '</div>';
+            container.innerHTML = majorsHtml;
+        }
+        
+        /**
+         * دالة لإضافة مستمعي الأحداث للأكورديون والتابات
+         */
+        function addEventListeners() {
+            // مستمعي الأكورديون
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = document.querySelector(header.dataset.target);
+                    const icon = header.querySelector('svg');
+                    
+                    if (content.style.maxHeight) {
+                        // إغلاق
+                        content.style.maxHeight = null;
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        // فتح (مع إغلاق الأقسام الأخرى من نفس المستوى إذا أردنا)
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+            
+            // مستمعي التابات (للشهر الأول)
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.dataset.tab;
+                    const tabContainer = button.closest('div').nextElementSibling;
+                    
+                    // إزالة 'active' من جميع الأزرار والمحتويات ضمن نفس المجموعة
+                    button.parentElement.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                    tabContainer.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                    
+                    // إضافة 'active' للزر والمحتوى المختار
+                    button.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        }
+
+        // تشغيل الدالة عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', renderProgram);
     </script>
-
 </body>
 </html>
+
